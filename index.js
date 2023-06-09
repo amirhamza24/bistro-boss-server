@@ -56,6 +56,18 @@ async function run() {
         res.send({ token });
     })
 
+    // warning: use verifyJWT before using verifyAdmin
+    const verifyAdmin = async (req, res, next) => {
+        const email = req.decoded.email;
+        const query = { email: email };
+        const user = await usersCollection.findOne(query);
+        if(user?.role !== 'admin') {
+            return res.status(403).send({error: true, message: 'forbidden message'});
+        };
+        next();
+    } 
+
+
     // secure admin dashboard
 
     // users related APIs
