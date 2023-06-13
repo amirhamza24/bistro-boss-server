@@ -115,7 +115,7 @@ async function run() {
         res.send(result);
     })
 
-    // menu related APIs
+    // menu related API's
     app.get('/menu', async(req, res) => {
         const result = await menuCollection.find().toArray();
         res.send(result);
@@ -140,7 +140,7 @@ async function run() {
         res.send(result);
     })
 
-    // cart collection APIs
+    // cart collection API's
     app.get('/carts', verifyJWT, async(req, res) => {
         const email = req.query.email;
         if(!email) {
